@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:weather_app/widgets/time.dart';
 
 class HomeScreen extends StatelessWidget {
-  final DateTime now = DateTime.now();
-  final DateFormat dateFormatter = DateFormat("MMMd");
-  final DateFormat timeFormatter = DateFormat("jm");
-
-  HomeScreen({super.key});
-
-  String get formattedDate => dateFormatter.format(now);
-  String get formattedTime => timeFormatter.format(now);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,61 +48,49 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 100,
+              left: 10,
+              child: Time(
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  // fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 120,
               left: 10,
               child: RichText(
                 text: TextSpan(
-                  text: "Today, $formattedDate",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    // fontWeight: FontWeight.bold,
-                  ),
                   children: [
-                    TextSpan(
-                      text: " $formattedTime",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        // fontWeight: FontWeight.bold,
+                    const TextSpan(
+                      text: "16",
+                      style: TextStyle(
+                        fontSize: 150,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(0, 0, 0, 0.5),
+                      ),
+                    ),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.bottom,
+                      child: Transform.translate(
+                        offset: const Offset(0, -20),
+                        child: const Text(
+                          "℃",
+                          style: TextStyle(
+                            fontSize: 90,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     )
                   ],
                 ),
               ),
-            ),
-            Positioned(
-                top: 120,
-                left: 10,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(
-                        text: "16",
-                        style: TextStyle(
-                          fontSize: 150,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      WidgetSpan(
-                        alignment: PlaceholderAlignment.bottom,
-                        child: Transform.translate(
-                          offset: const Offset(0, -20),
-                          child: const Text(
-                            "℃",
-                            style: TextStyle(
-                              fontSize: 90,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ))
+            )
           ],
         ),
       ),
